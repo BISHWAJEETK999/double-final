@@ -83,7 +83,7 @@ Preferred communication style: Simple, everyday language.
   * Hero section background ("Explore the World with TTRAVE")
   * Domestic Adventures section image
   * International Escapes section image
-- Features include: local file upload, image preview, delete functionality, and 5MB size limit
+- Features include: local file upload, image preview, delete functionality, and 2MB size limit
 - Images are stored as Base64 in content management system for reliable display
 - All images are immediately visible on homepage after upload from admin panel
 

@@ -591,8 +591,12 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                               onChange={(e) => {
                                 const file = e.target.files?.[0];
                                 if (!file) return;
-                                if (file.size > 5 * 1024 * 1024) {
-                                  alert("Image size must be less than 5MB");
+                                if (file.size > 2 * 1024 * 1024) {
+                                  toast({
+                                    title: "Error",
+                                    description: "Image size must be less than 2MB for better performance",
+                                    variant: "destructive",
+                                  });
                                   return;
                                 }
                                 const reader = new FileReader();
@@ -601,6 +605,10 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                                     key: "hero.background",
                                     value: reader.result as string
                                   }]);
+                                  toast({
+                                    title: "Success",
+                                    description: "Hero background uploaded successfully",
+                                  });
                                 };
                                 reader.readAsDataURL(file);
                               }}
@@ -652,8 +660,12 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                               onChange={(e) => {
                                 const file = e.target.files?.[0];
                                 if (!file) return;
-                                if (file.size > 5 * 1024 * 1024) {
-                                  alert("Image size must be less than 5MB");
+                                if (file.size > 2 * 1024 * 1024) {
+                                  toast({
+                                    title: "Error",
+                                    description: "Image size must be less than 2MB for better performance",
+                                    variant: "destructive",
+                                  });
                                   return;
                                 }
                                 const reader = new FileReader();
@@ -662,6 +674,10 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                                     key: "domestic.background", 
                                     value: reader.result as string
                                   }]);
+                                  toast({
+                                    title: "Success",
+                                    description: "Domestic section image uploaded successfully",
+                                  });
                                 };
                                 reader.readAsDataURL(file);
                               }}
@@ -713,8 +729,12 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                               onChange={(e) => {
                                 const file = e.target.files?.[0];
                                 if (!file) return;
-                                if (file.size > 5 * 1024 * 1024) {
-                                  alert("Image size must be less than 5MB");
+                                if (file.size > 2 * 1024 * 1024) {
+                                  toast({
+                                    title: "Error",
+                                    description: "Image size must be less than 2MB for better performance",
+                                    variant: "destructive",
+                                  });
                                   return;
                                 }
                                 const reader = new FileReader();
@@ -723,6 +743,10 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                                     key: "international.background",
                                     value: reader.result as string
                                   }]);
+                                  toast({
+                                    title: "Success", 
+                                    description: "International section image uploaded successfully",
+                                  });
                                 };
                                 reader.readAsDataURL(file);
                               }}
