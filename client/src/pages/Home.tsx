@@ -15,7 +15,7 @@ export default function Home() {
       <Hero
         title={content["hero.title"] || "Explore the World with TTRAVE"}
         subtitle={content["hero.subtitle"] || "Book your next adventure with us!"}
-        backgroundImage={STOCK_IMAGES.hero}
+        backgroundImage={content["hero.background"] || STOCK_IMAGES.hero}
       >
         <Button 
           className="btn-primary-ttrave text-lg px-8 py-3"
@@ -42,7 +42,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <Card className="destination-card">
               <img
-                src={STOCK_IMAGES.domestic}
+                src={content["domestic.background"] || STOCK_IMAGES.domestic}
                 alt="Domestic Adventures - Indian Landmarks"
                 className="w-full h-64 object-cover"
               />
@@ -66,7 +66,7 @@ export default function Home() {
 
             <Card className="destination-card">
               <img
-                src={STOCK_IMAGES.international}
+                src={content["international.background"] || STOCK_IMAGES.international}
                 alt="International Escapes - Airplane View"
                 className="w-full h-64 object-cover"
               />

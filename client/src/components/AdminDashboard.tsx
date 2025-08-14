@@ -570,6 +570,200 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                     </CardContent>
                   </Card>
 
+                  {/* Homepage Background Images */}
+                  <Card>
+                    <CardHeader className="bg-purple-600 text-white">
+                      <CardTitle className="flex items-center">
+                        <i className="bi bi-images me-2"></i>
+                        Homepage Background Images
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-6 space-y-6">
+                      {/* Hero Background */}
+                      <div>
+                        <Label>Hero Section Background (Explore the World with TTRAVE)</Label>
+                        <div className="space-y-3 mt-2">
+                          <div className="flex items-center gap-4">
+                            <input
+                              type="file"
+                              id="hero-background-upload"
+                              accept="image/*"
+                              onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (!file) return;
+                                if (file.size > 5 * 1024 * 1024) {
+                                  alert("Image size must be less than 5MB");
+                                  return;
+                                }
+                                const reader = new FileReader();
+                                reader.onload = () => {
+                                  updateContentMutation.mutate([{
+                                    key: "hero.background",
+                                    value: reader.result as string
+                                  }]);
+                                };
+                                reader.readAsDataURL(file);
+                              }}
+                              className="hidden"
+                            />
+                            <Button
+                              type="button"
+                              onClick={() => document.getElementById('hero-background-upload')?.click()}
+                              className="btn-outline-ttrave"
+                            >
+                              <i className="bi bi-upload me-2"></i>
+                              Upload Hero Background
+                            </Button>
+                            {content["hero.background"] && (
+                              <Button
+                                type="button"
+                                onClick={() => {
+                                  updateContentMutation.mutate([{ key: "hero.background", value: "" }]);
+                                }}
+                                className="btn-danger"
+                              >
+                                <i className="bi bi-trash me-2"></i>
+                                Delete
+                              </Button>
+                            )}
+                          </div>
+                          {content["hero.background"] && (
+                            <div className="border rounded-lg p-3 bg-gray-50">
+                              <img
+                                src={content["hero.background"]}
+                                alt="Hero background preview"
+                                className="h-20 w-32 object-cover rounded"
+                              />
+                              <p className="text-sm text-gray-600 mt-2">Current hero background</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Domestic Section Background */}
+                      <div>
+                        <Label>Domestic Adventures Image</Label>
+                        <div className="space-y-3 mt-2">
+                          <div className="flex items-center gap-4">
+                            <input
+                              type="file"
+                              id="domestic-background-upload"
+                              accept="image/*"
+                              onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (!file) return;
+                                if (file.size > 5 * 1024 * 1024) {
+                                  alert("Image size must be less than 5MB");
+                                  return;
+                                }
+                                const reader = new FileReader();
+                                reader.onload = () => {
+                                  updateContentMutation.mutate([{
+                                    key: "domestic.background", 
+                                    value: reader.result as string
+                                  }]);
+                                };
+                                reader.readAsDataURL(file);
+                              }}
+                              className="hidden"
+                            />
+                            <Button
+                              type="button"
+                              onClick={() => document.getElementById('domestic-background-upload')?.click()}
+                              className="btn-outline-ttrave"
+                            >
+                              <i className="bi bi-upload me-2"></i>
+                              Upload Domestic Image
+                            </Button>
+                            {content["domestic.background"] && (
+                              <Button
+                                type="button"
+                                onClick={() => {
+                                  updateContentMutation.mutate([{ key: "domestic.background", value: "" }]);
+                                }}
+                                className="btn-danger"
+                              >
+                                <i className="bi bi-trash me-2"></i>
+                                Delete
+                              </Button>
+                            )}
+                          </div>
+                          {content["domestic.background"] && (
+                            <div className="border rounded-lg p-3 bg-gray-50">
+                              <img
+                                src={content["domestic.background"]}
+                                alt="Domestic section preview"
+                                className="h-20 w-32 object-cover rounded"
+                              />
+                              <p className="text-sm text-gray-600 mt-2">Current domestic section image</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* International Section Background */}
+                      <div>
+                        <Label>International Escapes Image</Label>
+                        <div className="space-y-3 mt-2">
+                          <div className="flex items-center gap-4">
+                            <input
+                              type="file"
+                              id="international-background-upload"
+                              accept="image/*"
+                              onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (!file) return;
+                                if (file.size > 5 * 1024 * 1024) {
+                                  alert("Image size must be less than 5MB");
+                                  return;
+                                }
+                                const reader = new FileReader();
+                                reader.onload = () => {
+                                  updateContentMutation.mutate([{
+                                    key: "international.background",
+                                    value: reader.result as string
+                                  }]);
+                                };
+                                reader.readAsDataURL(file);
+                              }}
+                              className="hidden"
+                            />
+                            <Button
+                              type="button"
+                              onClick={() => document.getElementById('international-background-upload')?.click()}
+                              className="btn-outline-ttrave"
+                            >
+                              <i className="bi bi-upload me-2"></i>
+                              Upload International Image
+                            </Button>
+                            {content["international.background"] && (
+                              <Button
+                                type="button"
+                                onClick={() => {
+                                  updateContentMutation.mutate([{ key: "international.background", value: "" }]);
+                                }}
+                                className="btn-danger"
+                              >
+                                <i className="bi bi-trash me-2"></i>
+                                Delete
+                              </Button>
+                            )}
+                          </div>
+                          {content["international.background"] && (
+                            <div className="border rounded-lg p-3 bg-gray-50">
+                              <img
+                                src={content["international.background"]}
+                                alt="International section preview"
+                                className="h-20 w-32 object-cover rounded"
+                              />
+                              <p className="text-sm text-gray-600 mt-2">Current international section image</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <Card>
                       <CardHeader className="bg-blue-500 text-white">
