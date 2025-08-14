@@ -77,6 +77,13 @@ Preferred communication style: Simple, everyday language.
 - Includes comprehensive deployment documentation and quick-start guides
 - App now deploys anywhere without any configuration required
 
+### Data Persistence Issue Resolution (January 2025)
+- **IDENTIFIED**: Admin changes being lost on Render due to in-memory storage and server restarts
+- Created comprehensive database setup guide for Render PostgreSQL integration
+- Added environment-based storage detection with helpful console messages
+- Provided alternative Railway deployment option for automatic database setup
+- App now clearly indicates storage type and provides setup guidance for permanent data
+
 ## System Architecture
 
 ### Frontend Architecture
