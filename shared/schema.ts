@@ -7,6 +7,7 @@ export const users = pgTable("users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const destinations = pgTable("destinations", {
@@ -24,6 +25,7 @@ export const content = pgTable("content", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   key: text("key").notNull().unique(),
   value: text("value").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
@@ -34,7 +36,7 @@ export const contactSubmissions = pgTable("contact_submissions", {
   email: text("email").notNull(),
   subject: text("subject").notNull(),
   message: text("message").notNull(),
-  status: text("status").default("pending"), // 'pending', 'responded'
+  status: text("status").default("new"), // 'new', 'responded'
   createdAt: timestamp("created_at").defaultNow(),
 });
 
@@ -73,6 +75,7 @@ export const insertDestinationSchema = createInsertSchema(destinations).omit({
 
 export const insertContentSchema = createInsertSchema(content).omit({
   id: true,
+  createdAt: true,
   updatedAt: true,
 });
 

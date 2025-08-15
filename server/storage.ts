@@ -375,14 +375,15 @@ export class MemStorage implements IStorage {
   }
 }
 
+import { PostgresStorage } from "./postgres-storage";
+
 // Create storage instance based on environment
 function createStorage(): IStorage {
   const databaseUrl = process.env.DATABASE_URL;
   
   if (databaseUrl) {
     console.log("✅ Using PostgreSQL database - your changes will be permanent!");
-    // For now, return MemStorage until database integration is complete
-    return new MemStorage();
+    return new PostgresStorage();
   } else {
     console.log("⚠️ Using temporary memory storage - changes will be lost on restart!");
     console.log("💡 Add DATABASE_URL to Render environment variables for permanent storage");
