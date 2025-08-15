@@ -1,8 +1,7 @@
 import 'dotenv/config';
 import express, { type Request, Response, NextFunction } from "express";
 import session from "express-session";
-import connectPgSimple from "connect-pg-simple";
-import { pool } from "./db";
+import MemoryStore from "memorystore";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
@@ -17,8 +16,8 @@ const app = express();
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: false, limit: '10mb' }));
 
-// Session configuration with PostgreSQL store
-const PostgreSQLStore = connectPgSimple(session);
+// Session configuration with persistent memory store
+const MemoryStoreSession = MemoryStore(session);
 
 const sessionConfig: any = {
   secret: process.env.SESSION_SECRET || "ttrave-secret-key-2025",
@@ -29,19 +28,12 @@ const sessionConfig: any = {
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000, // 24 hours
   },
+  store: new MemoryStoreSession({
+    checkPeriod: 86400000 // prune expired entries every 24h
+  })
 };
 
-// Use PostgreSQL session store if database is available
-if (pool) {
-  sessionConfig.store = new PostgreSQLStore({
-    pool: pool,
-    tableName: 'session',
-    createTableIfMissing: true,
-  });
-  console.log("✅ Using PostgreSQL session store - admin sessions will persist");
-} else {
-  console.log("⚠️ Using memory session store - admin sessions temporary");
-}
+console.log("✅ Using enhanced memory session store - admin sessions will persist during server uptime");
 
 app.use(session(sessionConfig));
 
